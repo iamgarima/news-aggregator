@@ -11,14 +11,16 @@ const StoryCard = ({story = {}, opts = {}, css = {}}) => {
   
   return <div className={`${styles.wrapper} ${align}`}>
     {showImg && <img src={image} alt={title} />}
-    <h3>{title}</h3>
-    {showDescription && <p>{description}</p>}
+    <h3 className={styles.title}>{title}</h3>
+    {showDescription && <div className={styles.description}>{description}</div>}
     <div className={styles.sourceWrapper}>
       <a href={srcUrl} target="_blank" rel="noopener noreferrer">
-        <div>{srcName}</div>
+        <div className={styles.srcName}>{srcName}</div>
       </a>
       <Separator />
-      <TimeAgo date={publishedAt} />
+      <div className={styles.publishTime}>
+        <TimeAgo date={publishedAt} />
+      </div>
     </div>
   </div>;
 };

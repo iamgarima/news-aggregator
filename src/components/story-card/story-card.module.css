@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 8px;
 }
 
 .left {
@@ -19,4 +20,20 @@
 
 .sourceWrapper {
   display: flex;
+  margin-bottom: 8px;
+  color: #5d6269;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.description, .srcName, .publishTime {
+  font-size: 16px;
+}
+
+.srcName {
+  color: #5d6269;
 }

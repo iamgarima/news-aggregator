@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './separator.module.css';
 
 const Separator = type => {
   const getSeparator = () => {
@@ -8,7 +9,7 @@ const Separator = type => {
       default: return '.';
     }
   };
-  return <div>{getSeparator()}</div>;
+  return <div className={styles.separator}>{getSeparator()}</div>;
 };
 
 export default Separator;
