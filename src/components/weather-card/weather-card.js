@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import config from '../../config/account_ids.json';
-import { loadData, getWeatherImgSrc } from '../../utils.js';
+import { loadData, getWeatherImgSrc, getDay } from '../../utils.js';
 
 import styles from './weather-card.module.css';
 
@@ -39,10 +39,12 @@ const WeatherCard = () => {
   }, []);
 
   // Function to return forecast ui single item
-  const forecastItem = weatherData => {
-    const { weather:[{ main, icon }], main: { temp_min:tempMin, temp_max:tempMax } } = weatherData;
+  const forecastItem = (weatherData, currentWeather = false) => {
+    const { weather:[{ main, icon }], main: { temp_min:tempMin, temp_max:tempMax }, dt, dt_txt } = weatherData;
+    const day = currentWeather ? Date(dt).substring(0, 3) : getDay(dt_txt);
+    
     return <div className={styles.itemWrapper}>
-      <p className={styles.itemDate}>{Date(dt).substring(0, 3)}</p>
+      <p className={styles.itemDate}>{day}</p>
       <img src={getWeatherImgSrc(icon)} alt={main} />
       <p className={styles.itemTemp}>{parseInt(tempMax)}&deg;C</p>
       <p className={styles.itemTemp}>{parseInt(tempMin)}&deg;C</p>
@@ -61,7 +63,7 @@ const WeatherCard = () => {
       <div className={styles.temp}>{temp} &deg;C</div>
     </div>
     <div className={styles.forecastWrapper}>
-      {forecastItem(weatherData)}
+      {forecastItem(weatherData,true)}
       {forecastData.list.slice(1, 6).map((weatherData) => forecastItem(weatherData))}
     </div>
   </div>;

@@ -12,3 +12,9 @@ export const loadData = async (api) => {
 export const getWeatherImgSrc = iconId => {
   return `http://openweathermap.org/img/wn/${iconId}.png`;
 }
+
+// Function to get day on any given date
+export const getDay = date => {
+  const daysList = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  return daysList[new Date(date).getDay() - 1];
+}
