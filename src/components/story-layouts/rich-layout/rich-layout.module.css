@@ -19,6 +19,7 @@
   grid-column: 3/4;
   grid-row: 1/auto;
 }
-.weatherWidget {
-  height: 264px;
+
+.slotWrapper {
+  min-height: 264px;
 }
