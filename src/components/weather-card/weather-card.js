@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import config from '../../config/account_ids.json';
-import { loadData, getWeatherImgSrc, getDay } from '../../utils.js';
+import { getWeatherImgSrc, getDay, loadWeatherData, loadForecastData } from '../../utils.js';
 
 import styles from './weather-card.module.css';
 
@@ -9,40 +8,50 @@ const WeatherCard = () => {
   const [coord, updateCoord] = useState({});
   const [weatherData, updateWeatherData] = useState(null);
   const [forecastData, updateForecastData] = useState(null);
-
-  // Function to get data from weather apis and save in state
-  const getData = async (lat, lon) => {
-    const weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${config['openweather_api_key']}`;
-    const forecastApi = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${config['openweather_api_key']}`;
-    const weather = await loadData(weatherApi);
-    const forecast = await loadData(forecastApi);
-    updateWeatherData(weather);
-    updateForecastData(forecast);
-  };
-
-  // Function to get the user's geolocation
-  // Run a callback to save coordinates in state and call getData function
-  const getGeometricCoord = () => {
-    if('geolocation' in navigator) {
-      /* geolocation is available */
-      navigator.geolocation.getCurrentPosition((position) => {
-        !weatherData && !forecastData && getData(parseInt(position.coords.latitude), parseInt(position.coords.longitude));
-        updateCoord({lat: position.coords.latitude, lon: position.coords.longitude});
-      });
-    } else {
-      console.log("geolocation IS NOT available");
-    }
-  };
+  const [geoAccess, updateGeoAccessStatus] = useState(false);
 
   useEffect(() => {
-    getGeometricCoord();
+    const successCallback = position => {
+      updateCoord({ lat: position.coords.latitude, lon: position.coords.longitude });
+    };
+
+    const errorCallback = error => {
+      console.log(`ERROR(${error.code}): ${error.message}`);
+      updateGeoAccessStatus(false);
+    };
+
+    // Function to get the user's geolocation
+    const getGeoLocation = () => {
+      if('geolocation' in navigator) {
+        // geolocation is available
+        updateGeoAccessStatus(true);
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      } else {
+        // geolocation is not available
+        console.log("Geolocation is not supported by your browser");
+        updateGeoAccessStatus(false);
+      }
+    };
+
+    getGeoLocation();
   }, []);
+
+  useEffect(() => {
+    // Function to get data from weather apis and save in state
+    const getData = async (lat, lon) => {
+      const weather = await loadWeatherData(lat, lon);
+      const forecast = await loadForecastData(lat, lon);
+      updateWeatherData(weather);
+      updateForecastData(forecast);
+    };
+    coord.lat && coord.lon && getData(coord.lat, coord.lon);
+  }, [coord]);
 
   // Function to return forecast ui single item
   const forecastItem = (weatherData, currentWeather = false) => {
     const { weather:[{ main, icon }], main: { temp_min:tempMin, temp_max:tempMax }, dt, dt_txt } = weatherData;
     const day = currentWeather ? Date(dt).substring(0, 3) : getDay(dt_txt);
-    
+
     return <div className={styles.itemWrapper}>
       <p className={styles.itemDate}>{day}</p>
       <img src={getWeatherImgSrc(icon)} alt={main} />
@@ -51,8 +60,11 @@ const WeatherCard = () => {
     </div>;
   };
 
-  // Returns null if coordinates or weather data not available
-  if(!Object.keys(coord).length || !weatherData || !forecastData) return null;
+  /* Returns null 
+   * if error occurs while fetching geolocation or
+   * missing coordinates or 
+   * weather data not available */
+  if(!geoAccess || !Object.keys(coord).length || !weatherData || !forecastData) return null;
   
   const { weather:[{ main }], main: { temp }, name, sys: {country}, dt } = weatherData;
   return <div className={styles.wrapper}>
