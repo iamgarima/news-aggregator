@@ -6,7 +6,7 @@ import styles from './list-layout.module.css';
 
 const ListLayout = ({ storiesList = [] }) => {
   return <div className={styles.wrapper}>
-      {storiesList.map(story => <StoryCard story={story} />)}
+      {storiesList.map((story, index) => <StoryCard story={story} key={`list-story-card-${index}`} />)}
     </div>;
 };
 

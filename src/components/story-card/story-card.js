@@ -10,22 +10,22 @@ const StoryCard = ({story = {}, opts = {}, css = {}}) => {
   const { showImg = false, showDescription = false } = opts;
   const { align = 'left' } = css;
 
-  return <a href={url} target="_blank" rel="noopener noreferrer">
-    <div className={`${styles.wrapper} ${styles[align]}`}>
+  return (<div className={`${styles.wrapper} ${styles[align]}`}>
+    <a href={url} target="_blank" rel="noopener noreferrer">
       {showImg && <img src={image} alt={title} />}
       <h3 className={styles.title}>{title}</h3>
       {showDescription && <div className={styles.description}>{description}</div>}
-      <div className={styles.sourceWrapper}>
-        <a href={srcUrl} target="_blank" rel="noopener noreferrer">
-          <div className={styles.srcName}>{srcName}</div>
-        </a>
-        <Separator />
-        <div className={styles.publishTime}>
-          <TimeAgo date={publishedAt} />
-        </div>
+    </a>
+    <div className={styles.sourceWrapper}>
+      <a href={srcUrl} target="_blank" rel="noopener noreferrer">
+        <div className={styles.srcName}>{srcName}</div>
+      </a>
+      <Separator />
+      <div className={styles.publishTime}>
+        <TimeAgo date={publishedAt} />
       </div>
     </div>
-  </a>;
+  </div>);
 };
 
 StoryCard.propTypes = {

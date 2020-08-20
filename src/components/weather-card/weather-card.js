@@ -67,9 +67,9 @@ const WeatherCard = () => {
 
   // Function to return forecast ui single item
   const forecastItem = (weatherData, today) => {
-    const { weather:[{ main, icon }], main: { temp_min:tempMin, temp_max:tempMax }, dt_txt } = weatherData;
+    const { weather:[{ main, icon }], main: { temp_min:tempMin, temp_max:tempMax }, dt, dt_txt } = weatherData;
     const day = today ? "Today" : getDay(dt_txt);
-    return <div className={styles.itemWrapper}>
+    return <div className={styles.itemWrapper} key={dt}>
       <p className={styles.itemDate}>{day}</p>
       <img src={getWeatherImgSrc(icon)} alt={main} />
       <p className={styles.itemTemp}>{parseInt(tempMax)}&deg;C</p>
