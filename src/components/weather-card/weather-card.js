@@ -84,13 +84,14 @@ const WeatherCard = () => {
   if(!geoAccess || !Object.keys(coord).length || !weatherData || !forecastData) return null;
   
   const { weather:[{ main }], main: { temp }, name, sys: {country}, dt } = weatherData;
-  const currentHour = Number(Date(dt).substring(16, 18)); // Check for a proper way to do this
+  const currentDateObj = new Date(dt * 1000);
+  const currentHour = currentDateObj.getHours();
   const filteredForecastList = filterForecastList(forecastData.list, currentHour);
   
   return <div className={styles.wrapper}>
     <div>
       <div className={styles.place}>{`${name}, ${country}`}</div>
-      <p className={styles.date}>{Date(dt).substring(0, 15)}</p>
+      <p className={styles.date}>{currentDateObj.toDateString()}</p>
       <div className={styles.status}>{main}</div>
       <div className={styles.temp}>{temp} &deg;C</div>
     </div>
