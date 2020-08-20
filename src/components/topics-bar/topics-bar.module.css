@@ -1,0 +1,27 @@
+.topicsWrapper {
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topicBtn {
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background-color:black;
+  color: white;
+  font-size: 16px;
+  padding: 7px 12px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 8px;
+  text-transform: capitalize;
+  margin-right: 16px;
+  outline: none;
+}
+
+.topicBtn:hover, .active {
+  background-color: #4860bc; 
+}
