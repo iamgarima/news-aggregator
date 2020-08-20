@@ -2,7 +2,7 @@ import config from './config/account_ids.json';
 import { FORECAST_DEFAULT_HOUR } from './constants.js';
 
 // Function to fetch data sending an api request
-const loadData = async (api) => {
+export const loadData = async (api) => {
   try {
     const data = await await((await fetch(api)).json());
     return data;
