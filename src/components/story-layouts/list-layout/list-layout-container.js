@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import { loadData } from '../../../utils';
-import config from '../../../config/account_ids.json'
+import config from '../../../config/account_ids.json';
 import ListLayout from './list-layout';
 import { useQueryParams } from '../../../hooks/use-query-params';
 

@@ -1,1 +1,1 @@
-export { default } from './list-layout';
+export { default } from './list-layout-container';

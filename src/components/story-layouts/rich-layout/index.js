@@ -1,1 +1,1 @@
-export { default } from './rich-layout';
+export { default } from './rich-layout-container';
