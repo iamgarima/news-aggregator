@@ -31,9 +31,9 @@ export const getWeatherImgSrc = iconId => {
 
 // Function to get day on any given date
 export const getDay = date => {
-  const daysList = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const daysList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const dayCode = new Date(date).getDay();
-  return daysList[dayCode ? dayCode - 1 : 6];
+  return daysList[dayCode];
 }
 
 // Function to get the closest number divisible by 3 customised for numbers limited to a 24 hour clock

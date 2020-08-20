@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getWeatherImgSrc, getDay, loadWeatherData, loadForecastData, filterForecastList } from '../../utils.js';
 
 import styles from './weather-card.module.css';
+import { FORECAST_LIMIT } from '../../constants.js';
 
 // Component to show weather based on the geolocation
 const WeatherCard = () => {
@@ -66,7 +67,7 @@ const WeatherCard = () => {
   if(!geoAccess || !Object.keys(coord).length || !weatherData || !forecastData) return null;
   
   const { weather:[{ main }], main: { temp }, name, sys: {country}, dt } = weatherData;
-  const currentHour = Number(Date(dt).substring(16, 18));
+  const currentHour = Number(Date(dt).substring(16, 18)); // Check for a proper way to do this
   const filteredForecastList = filterForecastList(forecastData.list, currentHour);
   
   return <div className={styles.wrapper}>
@@ -78,7 +79,7 @@ const WeatherCard = () => {
     </div>
     <div className={styles.forecastWrapper}>
       {forecastItem(weatherData, true)}
-      {filteredForecastList.slice(1, 5).map((weatherData) => forecastItem(weatherData))}
+      {filteredForecastList.slice(1, FORECAST_LIMIT).map((weatherData) => forecastItem(weatherData))}
     </div>
   </div>;
 };
