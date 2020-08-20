@@ -1,13 +1,18 @@
 import React from 'react';
-import StoryCard from './components/story-card/story-card';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import SearchBar from './components/header/header';
+import ListLayoutContainer from './components/story-layouts/list-layout/list-layout-container';
 import './App.css';
 
-function App() {
-  // Rendering StoryCard here just for testing purpose at this stage
+const App = () => {
   return (
-    <div className="App">
-      <StoryCard /> 
-    </div>
+    <BrowserRouter>
+      <SearchBar />
+      <Switch>
+        {/* <Route path="/" component={RichLayoutWrapper} /> */}
+        <Route path="/search" component={ListLayoutContainer} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
