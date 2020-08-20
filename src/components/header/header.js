@@ -7,7 +7,7 @@ import { updateLanguage } from '../../actions/language';
 
 const Header = () => {
   const [inputVal, updateInputVal] = useState("");
-  const [langOption, updateLangOption] = useState("");
+  const [langOption, updateLangOption] = useState({ value: "en", label: "English" });
   const dispatch = useDispatch();
 
   const selectHandler = selectedOption => {
@@ -24,6 +24,7 @@ const Header = () => {
         value={langOption}
         onChange={selectHandler}
         options={languageOptions}
+        isSearchable
       />
     </div>
   </div>
