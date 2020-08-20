@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/header';
 import ListLayoutContainer from './components/story-layouts/list-layout';
-import RichLayoutContainer from './components/story-layouts/rich-layout';
+import Home from './components/home';
 import './App.css';
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route path="/search" component={ListLayoutContainer} />
-        <Route path="/" component={RichLayoutContainer} />
+        <Route path="/" component={Home} />
       </Switch>
     </BrowserRouter>
   );

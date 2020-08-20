@@ -13,7 +13,7 @@ const RichLayoutContainer = () => {
   useEffect(() => {
     const getData = async () => {
       const topicPath = topic !== "top-news" ? "/topics": "";
-      const api = `https://gnews.io/api/v3${topicPath}/top-news?lang=${code}&token=${config["gnews_api_key"]}`;
+      const api = `https://gnews.io/api/v3${topicPath}/${topic}?lang=${code}&token=${config["gnews_api_key"]}`;
       const topNewsData = await loadData(api);
       updateNewsData(topNewsData);
     };
