@@ -37,3 +37,16 @@
   flex-basis: 10%;
   outline: none;
 }
+
+.homeIcon {
+  flex-basis: 12%;
+}
+
+.weatherIcon {
+  width: 48px;
+  position: fixed;
+  right: 20px;
+  border-radius: 10px;
+  background-color: skyblue;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+}
