@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TimeAgo from 'react-timeago';
 import Separator from '../separator';
 import styles from './story-card.module.css';
@@ -25,6 +26,27 @@ const StoryCard = ({story = {}, opts = {}, css = {}}) => {
       </div>
     </div>
   </a>;
+};
+
+StoryCard.propTypes = {
+  story: PropTypes.shape({
+    title: PropTypes.string, 
+    description: PropTypes.string, 
+    url: PropTypes.string, 
+    image: PropTypes.string, 
+    publishedAt: PropTypes.string, 
+    source: PropTypes.shape({ 
+      name: PropTypes.string, 
+      url: PropTypes.string
+    })
+  }),
+  opts: PropTypes.shape({
+    showImg: PropTypes.bool,
+    showDescription: PropTypes.bool
+  }),
+  css: PropTypes.shape({
+    align: PropTypes.string
+  }),
 };
 
 export default StoryCard; 
