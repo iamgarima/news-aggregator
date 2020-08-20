@@ -7,16 +7,18 @@ import config from '../../../config/account_ids.json';
 
 const RichLayoutContainer = () => {
   const [newsData, updateNewsData] = useState({});
-  const { code = "en" } = useSelector(state => (state.language || {}))
+  const { code = "en" } = useSelector(state => (state.language || {}));
+  const topic = useSelector(state => state.topic);
 
-  useEffect   (() => {
+  useEffect(() => {
     const getData = async () => {
-      const api = `https://gnews.io/api/v3/top-news?lang=${code}&token=${config["gnews_api_key"]}`;
+      const topicPath = topic !== "top-news" ? "/topics": "";
+      const api = `https://gnews.io/api/v3${topicPath}/top-news?lang=${code}&token=${config["gnews_api_key"]}`;
       const topNewsData = await loadData(api);
       updateNewsData(topNewsData);
     };
     getData();
-  }, [code]);
+  }, [code, topic]);
 
   return <RichLayout storiesList={newsData.articles} SlotCardComponent={WeatherCard} />;
 };
