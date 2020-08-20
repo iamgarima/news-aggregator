@@ -32,5 +32,19 @@ export const getWeatherImgSrc = iconId => {
 // Function to get day on any given date
 export const getDay = date => {
   const daysList = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  return daysList[new Date(date).getDay() - 1];
+  const dayCode = new Date(date).getDay();
+  return daysList[dayCode ? dayCode - 1 : 6];
 }
+
+// Function to get the closest number divisible by 3 customised for numbers limited to a 24 hour clock
+// e.g. this list [0, 3, 6, 9, 12, 15, 18, 21] 
+const getClosest = num => {
+  if(num % 3 === 0) return num;
+  const closestNum = num % 3 === 1 ? num - 1 : num + 1;
+  return num === 24 ? 0 : closestNum; 
+};
+
+// Function to filter the list based on your current hour of time
+export const filterForecastList = (forecastList, currentHour) => {
+  return forecastList.filter(forecast => new Date(forecast["dt_txt"]).getHours() === getClosest(currentHour));
+};

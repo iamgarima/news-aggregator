@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getWeatherImgSrc, getDay, loadWeatherData, loadForecastData } from '../../utils.js';
+import { getWeatherImgSrc, getDay, loadWeatherData, loadForecastData, filterForecastList } from '../../utils.js';
 
 import styles from './weather-card.module.css';
 
@@ -48,10 +48,9 @@ const WeatherCard = () => {
   }, [coord]);
 
   // Function to return forecast ui single item
-  const forecastItem = (weatherData, currentWeather = false) => {
-    const { weather:[{ main, icon }], main: { temp_min:tempMin, temp_max:tempMax }, dt, dt_txt } = weatherData;
-    const day = currentWeather ? Date(dt).substring(0, 3) : getDay(dt_txt);
-
+  const forecastItem = (weatherData, today) => {
+    const { weather:[{ main, icon }], main: { temp_min:tempMin, temp_max:tempMax }, dt_txt } = weatherData;
+    const day = today ? "Today" : getDay(dt_txt);
     return <div className={styles.itemWrapper}>
       <p className={styles.itemDate}>{day}</p>
       <img src={getWeatherImgSrc(icon)} alt={main} />
@@ -67,6 +66,9 @@ const WeatherCard = () => {
   if(!geoAccess || !Object.keys(coord).length || !weatherData || !forecastData) return null;
   
   const { weather:[{ main }], main: { temp }, name, sys: {country}, dt } = weatherData;
+  const currentHour = Number(Date(dt).substring(16, 18));
+  const filteredForecastList = filterForecastList(forecastData.list, currentHour);
+  
   return <div className={styles.wrapper}>
     <div>
       <div className={styles.place}>{`${name}, ${country}`}</div>
@@ -75,8 +77,8 @@ const WeatherCard = () => {
       <div className={styles.temp}>{temp} &deg;C</div>
     </div>
     <div className={styles.forecastWrapper}>
-      {forecastItem(weatherData,true)}
-      {forecastData.list.slice(1, 6).map((weatherData) => forecastItem(weatherData))}
+      {forecastItem(weatherData, true)}
+      {filteredForecastList.slice(1, 5).map((weatherData) => forecastItem(weatherData))}
     </div>
   </div>;
 };
