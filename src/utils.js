@@ -1,4 +1,5 @@
 import config from './config/account_ids.json';
+import { FORECAST_DEFAULT_TIME } from './constants.js';
 
 // Function to fetch data sending an api request
 const loadData = async (api) => {
@@ -26,11 +27,12 @@ export const loadForecastData = async (lat, lon) => {
 
 // Function to get weather image source url given icon id
 export const getWeatherImgSrc = iconId => {
-  return `http://openweathermap.org/img/wn/${iconId}.png`;
+  return iconId ? `http://openweathermap.org/img/wn/${iconId}.png` : '';
 }
 
 // Function to get day on any given date
-export const getDay = date => {
+export const getDay = (date = "") => {
+  if(!date) return "";
   const daysList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const dayCode = new Date(date).getDay();
   return daysList[dayCode];
@@ -45,6 +47,6 @@ const getClosest = num => {
 };
 
 // Function to filter the list based on your current hour of time
-export const filterForecastList = (forecastList, currentHour) => {
+export const filterForecastList = (forecastList, currentHour = FORECAST_DEFAULT_TIME) => {
   return forecastList.filter(forecast => new Date(forecast["dt_txt"]).getHours() === getClosest(currentHour));
 };
