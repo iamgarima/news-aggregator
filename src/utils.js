@@ -1,5 +1,5 @@
 import config from './config/account_ids.json';
-import { FORECAST_DEFAULT_TIME } from './constants.js';
+import { FORECAST_DEFAULT_HOUR } from './constants.js';
 
 // Function to fetch data sending an api request
 const loadData = async (api) => {
@@ -47,6 +47,6 @@ const getClosest = num => {
 };
 
 // Function to filter the list based on your current hour of time
-export const filterForecastList = (forecastList, currentHour = FORECAST_DEFAULT_TIME) => {
+export const filterForecastList = (forecastList, currentHour = FORECAST_DEFAULT_HOUR) => {
   return forecastList.filter(forecast => new Date(forecast["dt_txt"]).getHours() === getClosest(currentHour));
 };
