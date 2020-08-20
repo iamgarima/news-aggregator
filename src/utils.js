@@ -43,7 +43,7 @@ export const getDay = (date = "") => {
 const getClosest = num => {
   if(num % 3 === 0) return num;
   const closestNum = num % 3 === 1 ? num - 1 : num + 1;
-  return num === 24 ? 0 : closestNum; 
+  return closestNum === 24 ? 0 : closestNum; 
 };
 
 // Function to filter the list based on your current hour of time
