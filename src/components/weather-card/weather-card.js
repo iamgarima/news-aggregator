@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { getWeatherImgSrc, getDay, loadWeatherData, loadForecastData, filterForecastList } from '../../utils.js';
+import { FORECAST_LIMIT } from '../../constants.js';
+import { updateGeolocationStatus } from '../../actions/geolocation.js';
 
 import styles from './weather-card.module.css';
-import { FORECAST_LIMIT } from '../../constants.js';
+
 
 // Component to show weather based on the geolocation
 const WeatherCard = () => {
@@ -10,15 +13,22 @@ const WeatherCard = () => {
   const [weatherData, updateWeatherData] = useState(null);
   const [forecastData, updateForecastData] = useState(null);
   const [geoAccess, updateGeoAccessStatus] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const successCallback = position => {
       updateCoord({ lat: position.coords.latitude, lon: position.coords.longitude });
+      dispatch(updateGeolocationStatus({ status: "success" }));
     };
 
     const errorCallback = error => {
-      console.log(`ERROR(${error.code}): ${error.message}`);
+      const { code, message } = error;
+      console.log(`ERROR(${code}): ${message}`);
       updateGeoAccessStatus(false);
+      dispatch(updateGeolocationStatus({ 
+        status: "error",
+        error: { code, message }
+      }));
     };
 
     // Function to get the user's geolocation
@@ -31,6 +41,13 @@ const WeatherCard = () => {
         // geolocation is not available
         console.log("Geolocation is not supported by your browser");
         updateGeoAccessStatus(false);
+        dispatch(updateGeolocationStatus({ 
+          status: "error",
+          error: {
+            code: 0, 
+            message: "Geolocation is not supported by your browser"
+          }
+        }));
       }
     };
 
