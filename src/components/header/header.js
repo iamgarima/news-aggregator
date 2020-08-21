@@ -26,7 +26,7 @@ const Header = () => {
     dispatch(updateLanguage({ code: value, name: label }));
   };
 
-  const errorMessage = (geolocation.status === "error" && geolocation.error.code === 0) ? `Sorry! Can't see weather details? ${geolocation.error.message}` : "To see weather details, please make sure your geolocation is enabled and then refresh the page.";
+  const errorMessage = (geolocation && geolocation.status === "error" && geolocation.error.code === 0) ? `Sorry! Can't see weather details? ${geolocation.error.message}` : "To see weather details, please make sure your geolocation is enabled and then refresh the page.";
 
   return <div className={styles.headerWrapper}>
       {pageType === "search-page" && <div className={styles.homeIconWrapper}>
