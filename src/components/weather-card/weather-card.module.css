@@ -1,8 +1,12 @@
 .wrapper {
-  min-width: 300px;
-  min-height: 230px;
-  padding: 16px;
+  max-width: 300px;
+  padding: 24px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  margin: auto;
+}
+
+.wrapper:hover {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
 }
 
 .place {
@@ -34,6 +38,7 @@
 
 .itemWrapper {
   text-align: center;
+  margin-right: 8px;
 }
 
 .itemDate {
@@ -42,4 +47,14 @@
 
 .itemTemp {
   font-size: 12px;
+}
+
+@media (max-width: 992px) {
+  .wrapper {
+    max-width: none;
+    padding: 20px 16px 2px;
+  }
+  .forecastWrapper {
+    display: none;
+  }
 }
