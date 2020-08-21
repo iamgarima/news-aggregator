@@ -15,7 +15,9 @@ import styles from './story-card.module.css';
  *     align: to align story content  
  *   }
  */
-const StoryCard = ({story = {}, opts = {}, css = {}}) => {
+const StoryCard = ({story, opts = {}, css = {}}) => {
+  if(!story) return null;
+
   const { title, description, url, image, publishedAt, source: { name:srcName, url:srcUrl } } = story;
   const { showImg = false, showDescription = false } = opts;
   const { align = 'left' } = css;
@@ -24,7 +26,7 @@ const StoryCard = ({story = {}, opts = {}, css = {}}) => {
     <a href={url} target="_blank" rel="noopener noreferrer">
       {showImg && <img src={image} alt={title} />}
       <h3 className={styles.title}>{title}</h3>
-      {showDescription && <div className={styles.description}>{description}</div>}
+      {showDescription && <div id="story-description" className={styles.description}>{description}</div>}
     </a>
     <div className={styles.sourceWrapper}>
       <a href={srcUrl} target="_blank" rel="noopener noreferrer">

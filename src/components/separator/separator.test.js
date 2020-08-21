@@ -7,12 +7,12 @@ describe("Separator", () => {
     shallow(<Separator />);
   });
 
-  it('renders Separator bassed on the specified type', () => {
+  it('renders a separator based on the specified type', () => {
     const wrapper = mount(<Separator type="pipe" />);
     expect(wrapper.find('#separator')).toHaveText('|');
   });
 
-  it('renders Separator with dot as default when type is not passed', () => {
+  it('renders a dot separator as default when type is not passed', () => {
     const wrapper = mount(<Separator />);
     expect(wrapper.find('#separator')).toHaveText('.');
   });
