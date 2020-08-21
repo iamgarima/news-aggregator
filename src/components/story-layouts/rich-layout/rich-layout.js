@@ -1,14 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import StoryCard from '../../Story-card';
 
 import styles from './rich-layout.module.css';
 
 const RichLayout = ({ storiesList = [], SlotCardComponent }) => {
+  const geolocation = useSelector(state => state.geolocation);
   return <div className={styles.wrapper}>
-    <div className={styles.slotWrapper}>
+    {geolocation.status !== "error" && <div className={styles.slotWrapper}>
       <SlotCardComponent />
-    </div>
+    </div>}
     {storiesList.map((story, index) => <StoryCard story={story} key={`start-rich-story-card-${index}`} />)}
   </div>;
 };
