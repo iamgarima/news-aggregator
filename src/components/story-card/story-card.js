@@ -20,7 +20,9 @@ const StoryCard = ({story = {}, opts = {}, css = {}}) => {
       <a href={srcUrl} target="_blank" rel="noopener noreferrer">
         <div className={styles.srcName}>{srcName}</div>
       </a>
-      <Separator />
+      <div className={styles.separator}>
+        <Separator />
+      </div>
       <div className={styles.publishTime}>
         <TimeAgo date={publishedAt} />
       </div>

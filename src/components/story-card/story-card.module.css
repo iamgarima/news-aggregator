@@ -1,5 +1,4 @@
 .wrapper { 
-  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,4 +41,22 @@
 
 .srcName {
   color: #5d6269;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 16px;
+  }
+  .description, .srcName, .publishTime {
+    font-size: 12px;
+  }
+  .sourceWrapper {
+    flex-direction: column;
+  }
+  .separator {
+    display: none;
+  }
+  .title {
+    font-size: 14px;
+  }
 }
