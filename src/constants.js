@@ -1,6 +1,6 @@
 // Magic Constants
-export const FORECAST_LIMIT = 5;
-export const FORECAST_DEFAULT_HOUR = 9;
+export const FORECAST_LIMIT = 5; // Filter limit for given forecast list
+export const FORECAST_DEFAULT_HOUR = 9; // Default hour to filter from a day's forecast data 
 
 
 // Action type constants
