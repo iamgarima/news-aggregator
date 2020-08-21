@@ -17,7 +17,7 @@ const Header = () => {
   const [inputVal, updateInputVal] = useState("");
   const [langOption, updateLangOption] = useState({ value: "en", label: "English" });
   const pageType = useSelector(state => state.pageType);
-  const geolocation = useSelector(state => state.geolocation);
+  const { geolocation = {} } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const selectHandler = selectedOption => {
@@ -26,7 +26,9 @@ const Header = () => {
     dispatch(updateLanguage({ code: value, name: label }));
   };
 
-  const errorMessage = (geolocation && geolocation.status === "error" && geolocation.error.code === 0) ? `Sorry! Can't see weather details? ${geolocation.error.message}` : "To see weather details, please make sure your geolocation is enabled and then refresh the page.";
+  const getErrorMessage = (geolocation = {}) => {
+    return (geolocation.status === "error" && geolocation.error.code === 0) ? `Sorry! Can't see weather details? ${geolocation.error.message}` : "To see weather details, please make sure your geolocation is enabled and then refresh the page.";
+  };
 
   return <div className={styles.headerWrapper}>
       {pageType === "search-page" && <div className={styles.homeIconWrapper}>
@@ -49,7 +51,7 @@ const Header = () => {
         />
       </div>
       {pageType === "home-page" && geolocation.status === "error" && 
-        <img src={weather} alt="Weather Icon" title={errorMessage} className={styles.weatherIcon} />}
+        <img src={weather} alt="Weather Icon" title={getErrorMessage()} className={styles.weatherIcon} />}
     </div>;
 };
 
