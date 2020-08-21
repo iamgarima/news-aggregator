@@ -9,6 +9,8 @@
 
 .searchWrapper {
   flex-basis: 64%;
+  display: flex;
+  margin-right: 16px;
 }
 
 .inputBox {
@@ -31,22 +33,44 @@
   cursor: pointer;
   text-decoration: none;
   margin-left: 8px;
+  cursor: pointer;
 }
 
 .selectWrapper {
   flex-basis: 10%;
+  min-width: 108px;
   outline: none;
 }
 
-.homeIcon {
-  flex-basis: 12%;
+.homeIconWrapper {
+  flex-basis: 10%;
 }
 
 .weatherIcon {
   width: 48px;
   position: fixed;
-  right: 20px;
+  right: 16px;
+  bottom: 16px;
   border-radius: 10px;
   background-color: skyblue;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.16);
+}
+
+@media (max-width: 768px) {
+  .headerWrapper {
+    height: 65px;
+  }
+  .searchBtn {
+    margin-left: 4px;
+    padding: 7px 8px;
+  }
+  .searchWrapper {
+    margin: 0 8px;
+  }
+  .selectWrapper {
+    margin-right: 16px;
+  }
+  .homeIconWrapper {
+    margin: 0 8px;
+  }
 }
