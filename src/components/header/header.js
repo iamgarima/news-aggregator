@@ -7,6 +7,12 @@ import { updateLanguage } from '../../actions/language';
 import styles from './header.module.css';
 import weather from './svgs/weather.svg';
 
+/* Renders a Header bar which includes
+ * - home icon to navigate to home page when on search page
+ * - search bar to get top news based on input query
+ * - dropdown to choose news language
+ * - weather icon on geolocation error for user information
+ */
 const Header = () => {
   const [inputVal, updateInputVal] = useState("");
   const [langOption, updateLangOption] = useState({ value: "en", label: "English" });

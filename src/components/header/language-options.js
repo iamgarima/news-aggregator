@@ -1,3 +1,4 @@
+// List of supported languages
 const languageOptions = [
   { value: "af", label: "Afrikaans" },
   { value: "sq", label: "Albanian" },

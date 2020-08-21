@@ -4,6 +4,9 @@ import StoryCard from '../../Story-card';
 
 import styles from './list-layout.module.css';
 
+/* Renders a list of Story cards in list format
+ * Input: storiesList - list of stories/articles data
+ */
 const ListLayout = ({ storiesList = [] }) => {
   return <div className={styles.wrapper}>
       {storiesList.map((story, index) => <StoryCard story={story} key={`list-story-card-${index}`} />)}

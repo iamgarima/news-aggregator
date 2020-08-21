@@ -6,6 +6,8 @@ import ListLayout from './list-layout';
 import useQueryParams from '../../../hooks/use-query-params';
 import { updatePageType } from '../../../actions/page-type';
 
+// Container to pass news data to the ListLayout and render it
+// Fetches data based on search query and choosen language
 const ListLayoutContainer = () => {
   const [newsData, updateNewsData] = useState({});
   const { code = "en" } = useSelector(state => (state.language || {}));

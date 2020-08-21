@@ -4,6 +4,7 @@ import styles from './topics-bar.module.css';
 import { topicsList } from './topics-list';
 import { updateTopic } from '../../actions/topic';
 
+// Renders topics bar which is a list of topic buttons
 const TopicsBar = () => {
   const [activeTopic, updateActiveTopic] = useState('top-news');
   const dispatch = useDispatch();

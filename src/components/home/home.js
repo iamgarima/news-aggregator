@@ -4,6 +4,7 @@ import RichLayoutContainer from '../Story-layouts/Rich-layout';
 import TopicsBar from '../Topics-bar';
 import { updatePageType } from '../../actions/page-type';
 
+// Renders TopicsBar and RichLayoutContainer
 const Home = () => {
   const dispatch = useDispatch();
   dispatch(updatePageType("home-page"));

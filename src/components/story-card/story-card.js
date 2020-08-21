@@ -4,7 +4,17 @@ import TimeAgo from 'react-timeago';
 import Separator from '../Separator';
 import styles from './story-card.module.css';
 
-
+/* Renders a story card
+ * Accepted props: story, opts, css
+ *   story - story data object
+ *   opts: {
+ *     showImg: boolean value to define whether you want to show image
+ *     showDescription: boolean value to define whether you want to show description
+ *   }
+ *   css: {
+ *     align: to align story content  
+ *   }
+ */
 const StoryCard = ({story = {}, opts = {}, css = {}}) => {
   const { title, description, url, image, publishedAt, source: { name:srcName, url:srcUrl } } = story;
   const { showImg = false, showDescription = false } = opts;
@@ -47,7 +57,7 @@ StoryCard.propTypes = {
     showDescription: PropTypes.bool
   }),
   css: PropTypes.shape({
-    align: PropTypes.string
+    align: PropTypes.oneOf(["left", "center", "right"])
   }),
 };
 

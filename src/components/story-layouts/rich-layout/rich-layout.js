@@ -5,6 +5,11 @@ import StoryCard from '../../Story-card';
 
 import styles from './rich-layout.module.css';
 
+/* Renders a list of Story cards in grid format with the top right slot reserved for a widget/card 
+ * Input: storiesList, SlotCardComponent
+ *   storiesList - list of stories/articles data
+ *   SlotCardComponent - Component to render in the available top right slot
+ */
 const RichLayout = ({ storiesList = [], SlotCardComponent }) => {
   const geolocation = useSelector(state => state.geolocation);
   return <div className={styles.wrapper}>

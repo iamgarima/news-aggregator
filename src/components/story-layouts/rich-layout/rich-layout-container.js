@@ -5,6 +5,8 @@ import WeatherCard from '../../Weather-card';
 import { loadData } from '../../../utils/utils';
 import config from '../../../config/account_ids.json';
 
+// Container to pass news data to the RichLayout and render it with WeatherCard
+// Fetches data based on topic and choosen language
 const RichLayoutContainer = () => {
   const [newsData, updateNewsData] = useState({});
   const { code = "en" } = useSelector(state => (state.language || {}));

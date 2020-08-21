@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './separator.module.css';
 
+/* Renders a separator based on the type passed
+ * Defaults to dot when type is not passed
+ */ 
 const Separator = type => {
   const getSeparator = () => {
     switch(type) {

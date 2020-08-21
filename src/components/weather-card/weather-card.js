@@ -7,7 +7,8 @@ import { updateGeolocationStatus } from '../../actions/geolocation.js';
 import styles from './weather-card.module.css';
 
 
-// Component to show weather based on the geolocation
+// Renders weather card showing current weather details based on the geolocation
+// Shows next 4 days forecast details as well on desktop
 const WeatherCard = () => {
   const [coord, updateCoord] = useState({});
   const [weatherData, updateWeatherData] = useState(null);
