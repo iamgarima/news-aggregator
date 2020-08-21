@@ -1,1 +1,1 @@
-web: node index.js
+web: npn run start-server
