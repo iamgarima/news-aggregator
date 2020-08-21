@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import RichLayout from './rich-layout';
-import WeatherCard from '../../weather-card';
-import { loadData } from '../../../utils';
+import WeatherCard from '../../Weather-card';
+import { loadData } from '../../../utils/utils';
 import config from '../../../config/account_ids.json';
 
 const RichLayoutContainer = () => {

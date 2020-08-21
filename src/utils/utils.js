@@ -1,5 +1,5 @@
-import config from './config/account_ids.json';
-import { FORECAST_DEFAULT_HOUR } from './constants.js';
+import config from '../config/account_ids.json';
+import { FORECAST_DEFAULT_HOUR } from '../constants.js';
 
 // Function to fetch data sending an api request
 export const loadData = async (api) => {

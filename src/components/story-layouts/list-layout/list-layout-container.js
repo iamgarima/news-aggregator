@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { loadData } from '../../../utils';
+import { loadData } from '../../../utils/utils';
 import config from '../../../config/account_ids.json';
 import ListLayout from './list-layout';
 import { useQueryParams } from '../../../hooks/use-query-params';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TimeAgo from 'react-timeago';
-import Separator from '../separator';
+import Separator from '../Separator';
 import styles from './story-card.module.css';
 
 

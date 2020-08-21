@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getWeatherImgSrc, getDay, loadWeatherData, loadForecastData, filterForecastList } from '../../utils.js';
+import { getWeatherImgSrc, getDay, loadWeatherData, loadForecastData, filterForecastList } from '../../utils/utils';
 import { FORECAST_LIMIT } from '../../constants.js';
 import { updateGeolocationStatus } from '../../actions/geolocation.js';
 

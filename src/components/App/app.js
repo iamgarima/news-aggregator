@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './components/header';
-import ListLayoutContainer from './components/story-layouts/list-layout';
-import Home from './components/home';
-import './App.css';
+import Header from '../Header';
+import ListLayoutContainer from '../Story-layouts/List-layout';
+import Home from '../Home';
 
 const App = () => {
   return (

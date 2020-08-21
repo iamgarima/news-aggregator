@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StoryCard from '../../story-card';
+import StoryCard from '../../Story-card';
 
 import styles from './list-layout.module.css';
 
