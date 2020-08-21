@@ -12,11 +12,17 @@ import styles from './rich-layout.module.css';
  */
 const RichLayout = ({ storiesList = [], SlotCardComponent }) => {
   const geolocation = useSelector(state => state.geolocation);
+  const isGeolocationSuccess = geolocation && geolocation.status !== "error";
+
+  // If no geolocation access then pick 9 stories from the list for good UI
+  // Update this later when we have access to more stories
+  const updatedStoriesList = !isGeolocationSuccess ? storiesList.slice(0, 9) : storiesList;
+
   return <div className={styles.wrapper}>
-    {geolocation && geolocation.status !== "error" && <div className={styles.slotWrapper}>
+    { isGeolocationSuccess && <div className={styles.slotWrapper}>
       <SlotCardComponent />
     </div>}
-    {storiesList.map((story, index) => <StoryCard story={story} key={`start-rich-story-card-${index}`} />)}
+    {updatedStoriesList.map((story, index) => <StoryCard story={story} key={`start-rich-story-card-${index}`} />)}
   </div>;
 };
 
