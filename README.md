@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Required Configuration
+
+Update the GNews and OpenWeather api keys to get news and weather data required for the app. Follow the following steps.
+
+1. In the project directory, go to `/src/config/account_ids.json`
+2. Update value of `openweather_api_key` with the new OpenWeather api key and `gnews_api_key` with GNews api key.
+
+Currently, I have added both the keys there from free dummy id accounts on both platforms.
+
+Note: OpenWeather api key takes some time to be activated.
+
 ## Available Scripts
 
 In the project directory, you can run:
