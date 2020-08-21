@@ -21,7 +21,7 @@ const ListLayoutContainer = () => {
     const getData = async () => {
       const api = `https://gnews.io/api/v3/search?q=${query}&lang=${code}&token=${config["gnews_api_key"]}`;
       const searchNewsData = await loadData(api);
-      updateNewsData(searchNewsData);
+      searchNewsData && updateNewsData(searchNewsData);
     };
     getData();
   }, [query, code]);

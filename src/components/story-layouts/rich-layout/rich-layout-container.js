@@ -17,7 +17,7 @@ const RichLayoutContainer = () => {
       const topicPath = topic !== "top-news" ? "/topics": "";
       const api = `https://gnews.io/api/v3${topicPath}/${topic}?lang=${code}&token=${config["gnews_api_key"]}`;
       const topNewsData = await loadData(api);
-      updateNewsData(topNewsData);
+      topNewsData && updateNewsData(topNewsData);
     };
     getData();
   }, [code, topic]);

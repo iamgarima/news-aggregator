@@ -5,9 +5,10 @@ import { FORECAST_DEFAULT_HOUR } from '../constants.js';
 export const loadData = async (api) => {
   try {
     const data = await await((await fetch(api)).json());
+    if(data.errors) throw new Error(data.errors);
     return data;
   } catch(err) {
-    console.log("Error:", err);
+    console.log(err);
   }
 };
 
